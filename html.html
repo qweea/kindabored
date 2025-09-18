@@ -48,17 +48,11 @@
   </div>
 
   <script>
-    const SECRET_HASH = "d1a0f58f5de544f77c09d6f3de3d68d45cf9436cd37263bbf6741520c54f8af1";
+    const PASSWORD = "aps526165"; // your real password
 
-    async function sha256hex(str){
-      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,"0")).join("");
-    }
-
-    document.getElementById("go").onclick = async () => {
-      const p = document.getElementById("pw").value;
-      const h = await sha256hex(p);
-      if (h === SECRET_HASH) {
+    document.getElementById("go").onclick = () => {
+      const input = document.getElementById("pw").value;
+      if (input === PASSWORD) {
         document.getElementById("content").style.display = "block";
         document.querySelector("h1").style.display = "none";
         document.getElementById("pw").style.display = "none";
